@@ -33,26 +33,11 @@ void setup() {
 }
 
 void loop() {
-  delay(1000);
-  digitalWrite(39, HIGH);
-  delay(1000);
-  digitalWrite(39, LOW);
-  delay(1000);
-  digitalWrite(40, HIGH);
-  delay(1000);
-  digitalWrite(40, LOW);
-  delay(1000);
-  digitalWrite(41, HIGH);
-  delay(1000);
-  digitalWrite(41, LOW);
-  delay(1000);
-  digitalWrite(42, HIGH);
-  delay(1000);
-  digitalWrite(42, LOW);
-  delay(1000);
-  digitalWrite(43, HIGH);
-  delay(1000);
-  digitalWrite(43, LOW);
+  if (radio.available()) {
+    char text{16} = "";
+    radio.read(&text, sizeof(text));
+    //parse text to pull out instructions
+  }
 }
 
 void alert() {
