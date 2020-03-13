@@ -3,16 +3,24 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
-RF24 radio(7, 8);
+//RF24 radio(7, 8);
 
-const byte address[6] = "00001";
+//const byte address[6] = "00001";
+
+bool buttonOneLit = false;
+bool buttonTwoLit = false;
+bool buttonThreeLit = false;
+bool buttonFourLit = false;
+bool buttonFiveLit = false;
 
 void setup() {
   //Receiver Setup
+  /*
   radio.begin();
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
+  */
   //Illuminated Buttons
   pinMode(39, OUTPUT);
   pinMode(40, OUTPUT);
@@ -32,11 +40,13 @@ void setup() {
 }
 
 void loop() {
+  /*
   if (radio.available()) {
     char text{16} = "";
     radio.read(&text, sizeof(text));
     //parse text to pull out instructions
   }
+  */
 }
 
 void alert() {
