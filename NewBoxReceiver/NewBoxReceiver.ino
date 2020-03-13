@@ -7,11 +7,8 @@
 
 //const byte address[6] = "00001";
 
-bool buttonOneLit = false;
-bool buttonTwoLit = false;
-bool buttonThreeLit = false;
-bool buttonFourLit = false;
-bool buttonFiveLit = false;
+// tracking which buttons are lit
+bool buttonStates[5] = {false, false, false, false, false}
 
 void setup() {
   //Receiver Setup
@@ -40,6 +37,12 @@ void setup() {
 }
 
 void loop() {
+  for (int i = 34; i <= 38; i++) {
+    if (digitalRead(i) == HIGH) {
+      buttonStates[i - 34] = true;
+    }
+  }
+  // need to decide on behavior before continuing here!
   /*
   if (radio.available()) {
     char text{16} = "";
