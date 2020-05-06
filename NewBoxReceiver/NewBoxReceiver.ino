@@ -29,6 +29,7 @@ const int led_strip = 45;
 
 // tracking which buttons are lit
 bool buttonStates[5] = {false, false, false, false, false}
+bool buttons_active = true;
 
 void setup() {
   //Receiver Setup
@@ -50,16 +51,12 @@ void setup() {
   pinMode(r_b_sw, INPUT);
   pinMode(y_b_sw, INPUT);
   pinMode(g_b_sw, INPUT);
-  pinMode(r_b_sw, INPUT);
-  pinMode(r_b_sw, INPUT);
+  pinMode(b_b_sw, INPUT);
+  pinMode(w_b_sw, INPUT);
 }
 
 void loop() {
-  for (int i = 34; i <= 38; i++) {
-    if (digitalRead(i) == HIGH) {
-      buttonStates[i - 34] = true;
-    }
-  }
+
   // need to decide on behavior before continuing here!
   /*
   if (radio.available()) {
@@ -68,15 +65,53 @@ void loop() {
     //parse text to pull out instructions
   }
   */
+  if (/*serial activate sign recvd*/) {
+    buttons_active = true;
+    activate_buttons();
+  }
+}
+
+void activate_buttons() {
+  while (buttons_active == true) {
+    if (digitalRead(r_b_sw) == HIGH) {
+      digitalWrite(r_b_led, HIGH);
+      buttons_active = false;
+    }
+    if (digitalRead(y_b_sw) == HIGH) {
+      digitalWrite(y_b_led, HIGH);
+      buttons_active = false;
+    }
+    if (digitalRead(g_b_sw) == HIGH) {
+      digitalWrite(g_b_led, HIGH);
+      buttons_active = false;
+    }
+    if (digitalRead(b_b_sw) == HIGH) {
+      digitalWrite(b_b_led, HIGH);
+      buttons_active = false;
+    }
+    if (digitalRead(w_b_sw) == HIGH) {
+      digitalWrite(w_b_led, HIGH);
+      buttons_active = false;
+    }
+  }
+  loop();
+}
+
+void deactivate_buttons() {
+    digitalWrite(r_b_led, LOW);
+    digitalWrite(y_b_led, LOW);
+    digitalWrite(g_b_led, LOW);
+    digitalWrite(b_b_led, LOW);
+    digitalWrite(w_b_led, LOW);
 }
 
 void alert() {
   for (int i = 0; i <= 5; i++) {
     delay(200);
-    digitalWrite(44, HIGH);
-    digitalWrite(45, HIGH);
+    digitalWrite(buzzer, HIGH);
+    digitalWrite(led_strip, HIGH);
     delay(200);
-    digitalWrite(44, LOW);
-    digitalWrite(45, LOW);
+    digitalWrite(buzzer, LOW);
+    digitalWrite(led_strip, LOW);
   }
 }
