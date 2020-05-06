@@ -69,6 +69,12 @@ void loop() {
     buttons_active = true;
     activate_buttons();
   }
+  if (/*serial deactivate sign recvd*/) {
+    buttons_active = false;
+  }
+  if (/*serial reset sign recvd*/) {
+    reset_buttons();
+  }
 }
 
 void activate_buttons() {
@@ -97,12 +103,13 @@ void activate_buttons() {
   loop();
 }
 
-void deactivate_buttons() {
+void reset_buttons() {
     digitalWrite(r_b_led, LOW);
     digitalWrite(y_b_led, LOW);
     digitalWrite(g_b_led, LOW);
     digitalWrite(b_b_led, LOW);
     digitalWrite(w_b_led, LOW);
+    loop();
 }
 
 void alert() {
