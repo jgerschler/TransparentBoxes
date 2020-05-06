@@ -65,6 +65,9 @@ void loop() {
     //parse text to pull out instructions
   }
   */
+  if (/*serial alert sign recvd*/) {
+    alert();
+  }
   if (/*serial activate sign recvd*/) {
     buttons_active = true;
     activate_buttons();
@@ -121,4 +124,5 @@ void alert() {
     digitalWrite(buzzer, LOW);
     digitalWrite(led_strip, LOW);
   }
+  loop();
 }
