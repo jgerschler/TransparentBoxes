@@ -3,6 +3,26 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 
+//illuminated buttons
+const int r_b_led = 39;
+const int y_b_led = 40;
+const int g_b_led = 41;
+const int b_b_led = 42;
+const int w_b_led = 43;
+
+//button switches
+const int r_b_sw = 34;
+const int y_b_sw = 35;
+const int g_b_sw = 36;
+const int b_b_sw = 37;
+const int w_b_sw = 38;
+
+//buzzer
+const int buzzer = 44;
+
+//led strip
+const int led_strip = 45;
+
 //RF24 radio(7, 8);
 
 //const byte address[6] = "00001";
@@ -18,22 +38,20 @@ void setup() {
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
   */
-  //Illuminated Buttons
-  pinMode(39, OUTPUT);
-  pinMode(40, OUTPUT);
-  pinMode(41, OUTPUT);
-  pinMode(42, OUTPUT);
-  pinMode(43, OUTPUT);
-  //Buzzer
-  pinMode(44, OUTPUT);
-  //LED Strip
-  pinMode(45, OUTPUT);
+
+  pinMode(r_b_led, OUTPUT);
+  pinMode(y_b_led, OUTPUT);
+  pinMode(g_b_led, OUTPUT);
+  pinMode(b_b_led, OUTPUT);
+  pinMode(w_b_led, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(led_strip, OUTPUT);
   //Button Switches
-  pinMode(34, INPUT);
-  pinMode(35, INPUT);
-  pinMode(36, INPUT);
-  pinMode(37, INPUT);
-  pinMode(38, INPUT);
+  pinMode(r_b_sw, INPUT);
+  pinMode(y_b_sw, INPUT);
+  pinMode(g_b_sw, INPUT);
+  pinMode(r_b_sw, INPUT);
+  pinMode(r_b_sw, INPUT);
 }
 
 void loop() {
@@ -62,4 +80,3 @@ void alert() {
     digitalWrite(45, LOW);
   }
 }
-
