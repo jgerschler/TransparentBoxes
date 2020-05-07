@@ -43,7 +43,6 @@ void setup() {
   pinMode(w_b_led, OUTPUT);
   pinMode(buzzer, OUTPUT);
   pinMode(led_strip, OUTPUT);
-  //Button Switches
   pinMode(r_b_sw, INPUT);
   pinMode(y_b_sw, INPUT);
   pinMode(g_b_sw, INPUT);
