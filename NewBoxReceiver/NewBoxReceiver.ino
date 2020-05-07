@@ -27,17 +27,14 @@ RF24 radio(7, 8);
 
 const byte address[6] = "00001";
 
-// tracking which buttons are lit
+// tracking which buttons are lit -- not yet mandatory, but useful for future.
 bool buttons_active = true;
 
 void setup() {
-  //Receiver Setup
-  /*
   radio.begin();
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
-  */
 
   pinMode(r_b_led, OUTPUT);
   pinMode(y_b_led, OUTPUT);
@@ -55,29 +52,20 @@ void setup() {
 }
 
 void loop() {
-
-  // need to decide on behavior before continuing here!
-  /*
   if (radio.available()) {
-    char text{16} = "";
+    char text[16] = "";
     radio.read(&text, sizeof(text));
-    //parse text to pull out instructions
-    if (/*serial alert sign recvd*/) {
+    if (text == "alert") {
       alert();
     }
-    if (/*serial activate sign recvd*/) {
+    if (text == "activate") {
       buttons_active = true;
       activate_buttons();
     }
-    if (/*serial deactivate sign recvd*/) {
-      buttons_active = false;
-    }
-    if (/*serial reset sign recvd*/) {
+    if (text == "reset") {
       reset_buttons();
     }
   }
-  */
-
 }
 
 void activate_buttons() {
