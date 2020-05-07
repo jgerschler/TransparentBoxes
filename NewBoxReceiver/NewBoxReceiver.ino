@@ -23,12 +23,11 @@ const int buzzer = 44;
 //led strip
 const int led_strip = 45;
 
-//RF24 radio(7, 8);
+RF24 radio(7, 8);
 
-//const byte address[6] = "00001";
+const byte address[6] = "00001";
 
 // tracking which buttons are lit
-bool buttonStates[5] = {false, false, false, false, false}
 bool buttons_active = true;
 
 void setup() {
@@ -63,21 +62,22 @@ void loop() {
     char text{16} = "";
     radio.read(&text, sizeof(text));
     //parse text to pull out instructions
+    if (/*serial alert sign recvd*/) {
+      alert();
+    }
+    if (/*serial activate sign recvd*/) {
+      buttons_active = true;
+      activate_buttons();
+    }
+    if (/*serial deactivate sign recvd*/) {
+      buttons_active = false;
+    }
+    if (/*serial reset sign recvd*/) {
+      reset_buttons();
+    }
   }
   */
-  if (/*serial alert sign recvd*/) {
-    alert();
-  }
-  if (/*serial activate sign recvd*/) {
-    buttons_active = true;
-    activate_buttons();
-  }
-  if (/*serial deactivate sign recvd*/) {
-    buttons_active = false;
-  }
-  if (/*serial reset sign recvd*/) {
-    reset_buttons();
-  }
+
 }
 
 void activate_buttons() {
