@@ -45,9 +45,15 @@ void setup() {
   pinMode(g_b_sw, INPUT);
   pinMode(b_b_sw, INPUT);
   pinMode(w_b_sw, INPUT);
+
+  const char text[] = "alert";
+  radio.write(&text, sizeof(text));
 }
 
 void loop() {
+  const char text[] = "alert";
+  radio.write(&text, sizeof(text));
+  delay(5000);
   // eventually will be broken down by receiver unit
   // need to add activate and reset func
   if (digitalRead(r_b_sw) == HIGH) {

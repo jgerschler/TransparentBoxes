@@ -7,15 +7,15 @@
 const int r_b_led = 39;
 const int y_b_led = 40;
 const int g_b_led = 41;
-const int b_b_led = 42;
-const int w_b_led = 43;
+const int w_b_led = 42;
+const int b_b_led = 43;
 
 //button switches
 const int r_b_sw = 34;
 const int y_b_sw = 35;
 const int g_b_sw = 36;
-const int b_b_sw = 37;
-const int w_b_sw = 38;
+const int w_b_sw = 37;
+const int b_b_sw = 38;
 
 //buzzer
 const int buzzer = 44;
@@ -31,6 +31,7 @@ const byte address[6] = "00001";
 bool buttons_active = true;
 
 void setup() {
+  Serial.begin(9600);
   radio.begin();
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
@@ -54,14 +55,14 @@ void loop() {
   if (radio.available()) {
     char text[16] = "";
     radio.read(&text, sizeof(text));
-    if (text == "alert") {
+    if (String(text) == "alert") {
       alert();
     }
-    if (text == "activate") {
+    if (String(text) == "activate") {
       buttons_active = true;
       activate_buttons();
     }
-    if (text == "reset") {
+    if (String(text) == "reset") {
       reset_buttons();
     }
   }
