@@ -1,4 +1,6 @@
 
+//initially one way comms only, until boxes are complete.
+
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -56,6 +58,21 @@ void loop() {
     radio.read(&text, sizeof(text));
     if (String(text) == "alert") {
       alert();
+    }
+    if (String(text) == "br") {
+      digitalWrite(r_b_led, HIGH);
+    }
+    if (String(text) == "by") {
+      digitalWrite(y_b_led, HIGH);
+    }
+    if (String(text) == "bg") {
+      digitalWrite(g_b_led, HIGH);
+    }
+    if (String(text) == "bw") {
+      digitalWrite(w_b_led, HIGH);
+    }
+    if (String(text) == "bb") {
+      digitalWrite(b_b_led, HIGH);
     }
     if (String(text) == "activate") {
       buttons_active = true;
