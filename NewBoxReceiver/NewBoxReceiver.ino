@@ -31,7 +31,6 @@ const byte address[6] = "00001";
 bool buttons_active = true;
 
 void setup() {
-  Serial.begin(9600);
   radio.begin();
   radio.openReadingPipe(0, address);
   radio.setPALevel(RF24_PA_MIN);
@@ -104,11 +103,11 @@ void reset_buttons() {
 }
 
 void alert() {
-  for (int i = 0; i <= 5; i++) {
-    delay(200);
+  for (int i = 0; i <= 4; i++) {
+    delay(100);
     digitalWrite(buzzer, HIGH);
     digitalWrite(led_strip, HIGH);
-    delay(200);
+    delay(100);
     digitalWrite(buzzer, LOW);
     digitalWrite(led_strip, LOW);
   }
